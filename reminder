@@ -1,0 +1,28 @@
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MaterialAppModule} from './material.component';
+import {RouterModule, Routes} from '@angular/router';
+import {RootComponent} from './root/root.component';
+import {HttpClientModule} from '@angular/common/http';
+import {DynamicComponentRenderer} from './renderer/render.component';
+
+const appRoutes: Routes = [
+  {path: '', component: SidenavComponent, data: {title: 'First Component'}},
+  {path: 'sidenav', component: SidenavComponent, data: {title: 'Side Nav'}},
+  {path: 'toolbar', component: ToolbarComponent, data: {title: 'Toolbar'}}
+];
+
+@NgModule({
+  declarations: [
+    RootComponent,
+    DynamicComponentRenderer
+  ],
+  imports: [
+    HttpClientModule,RouterModule.forRoot(appRoutes, {useHash: true}), BrowserModule, BrowserAnimationsModule, MaterialAppModule
+  ],
+  providers: [],
+  bootstrap: [RootComponent]
+})
+export class AppModule {
+}
